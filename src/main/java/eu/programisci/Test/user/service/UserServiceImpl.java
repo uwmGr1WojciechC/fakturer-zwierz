@@ -1,6 +1,6 @@
 package eu.programisci.Test.user.service;
 
-import eu.programisci.Test.user.converters.UserCoverter;
+import eu.programisci.Test.user.converters.UserConverter;
 import eu.programisci.Test.user.dto.UserDTO;
 import eu.programisci.Test.user.dto.UserForTableDTO;
 import eu.programisci.Test.user.ob.UserOB;
@@ -18,19 +18,19 @@ public class UserServiceImpl implements IUserService {
     private IUserRepository userRepository;
 
     @Autowired
-    private UserCoverter userCoverter;
+    private UserConverter userConverter;
 
     @Override
     public UserDTO findOne(Long id) {
         UserOB ob = userRepository.findOne(id);
-        UserDTO dto = userCoverter.obToDto(ob);
+        UserDTO dto = userConverter.obToDto(ob);
         return dto;
     }
 
     @Override
     public List<UserForTableDTO> findAllForTable() {
         List<UserOB> obList = userRepository.findAll();
-        List<UserForTableDTO> dtoList = userCoverter.userObToUserForTable(obList);
+        List<UserForTableDTO> dtoList = userConverter.userObToUserForTable(obList);
         return dtoList;
     }
 
@@ -42,14 +42,14 @@ public class UserServiceImpl implements IUserService {
     @Override
     public UserDTO save(UserDTO dto) {
         if (dto.getId() == null) {
-            return userCoverter.obToDto(create(dto));
+            return userConverter.obToDto(create(dto));
         } else {
-            return userCoverter.obToDto(update(dto));
+            return userConverter.obToDto(update(dto));
         }
     }
 
     private UserOB create(UserDTO dto) {
-        UserOB ob = userCoverter.dtoToOb(dto);
+        UserOB ob = userConverter.dtoToOb(dto);
         ob.setCreationDate(new Date());
         ob = userRepository.save(ob);
         return ob;

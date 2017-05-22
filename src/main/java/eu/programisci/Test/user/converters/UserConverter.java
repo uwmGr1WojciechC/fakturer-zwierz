@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserCoverter {
+public class UserConverter {
 
     public UserDTO obToDto(UserOB in) {
         UserDTO out = new UserDTO();
