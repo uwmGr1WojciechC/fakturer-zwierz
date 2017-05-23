@@ -7,6 +7,16 @@ public class KontrahentDTO {
     private String adres;
     private String nip;
 
+    public KontrahentDTO() {
+    }
+
+    public KontrahentDTO(Long aId, String aNazwa, String aAdres, String aNip) {
+        id = aId;
+        nazwa = aNazwa;
+        adres = aAdres;
+        nip = aNip;
+    }
+
     public Long getId() {
         return id;
     }

@@ -2,8 +2,6 @@ package eu.programisci.app.towary.dto;
 
 import eu.programisci.app.towary.enums.EJednostkaMiary;
 
-import java.util.Date;
-
 public class TowarDTO {
 
     private Long id;
@@ -12,6 +10,18 @@ public class TowarDTO {
     private EJednostkaMiary jednostkaMiary;
     private Integer vat;
     private Double cenaNetto;
+
+    public TowarDTO() {
+    }
+
+    public TowarDTO(Long aId, String aNazwa, String aPkwiu, EJednostkaMiary aJednostkaMiary, Integer aVat, Double aCenaNetto) {
+        id = aId;
+        nazwa = aNazwa;
+        pkwiu = aPkwiu;
+        jednostkaMiary = aJednostkaMiary;
+        vat = aVat;
+        cenaNetto = aCenaNetto;
+    }
 
     public Long getId() {
         return id;
