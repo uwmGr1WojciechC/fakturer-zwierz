@@ -45,7 +45,7 @@
             <div id="right_col">
                 STORE: &nbsp;&nbsp;&nbsp;<button onclick="resetStore()" style="color:red">Reset</button>
                 <br>
-                <ul id="req-list" style="max-height:720px;overflow:auto;">
+                <ul id="req-list" style="max-height:720px;overflow:auto;list-style-type:none;padding:0">
                 </ul>
             </div>
         </div>
@@ -113,7 +113,9 @@
         function addReqToView(req) {
             var s = '<div style="margin-bottom:10px;border:solid 1px; padding: 2px"><span><b>' + req.method + '</b> ' + req.host + req.url +'</span><br>' +
                 '<span>' + (req.body ? JSON.stringify(req.body, null, 2) : '') + '</span><br>' +
-                '<button onclick="loadReq(\'' + req.id + '\')">Wczytaj</button>&nbsp;&nbsp;&nbsp;<button onclick="deleteReq(\'' + req.id + '\')">Usuń</button></div>';
+                '<button onclick="executeReq(\'' + req.id + '\')">Wykonaj</button>&nbsp;&nbsp;&nbsp;' +
+                '<button onclick="loadReq(\'' + req.id + '\')">Wczytaj</button>&nbsp;&nbsp;&nbsp;' +
+                '<button onclick="deleteReq(\'' + req.id + '\')">Usuń</button></div>';
 
             var li = document.createElement('li');
             li.id = req.id;
@@ -125,6 +127,17 @@
         function deleteReq(reqId) {
             localStorage.removeItem(reqId);
             document.getElementById(reqId).remove();
+        }
+
+        function executeReq(reqId) {
+            doRestClean();
+            loadReq(reqId);
+            var req = JSON.parse(localStorage.getItem(reqId));
+            if (req.method == 'GET') {
+                doRestGet();
+            } else {
+                doRestPost();
+            }
         }
 
         function loadReq(reqId) {
