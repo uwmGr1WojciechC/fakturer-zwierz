@@ -1,5 +1,7 @@
 package eu.programisci.relacje.service;
 
+import eu.programisci.relacje.dto.RequestDTO;
+import eu.programisci.relacje.dto.ResponseDTO;
 import eu.programisci.relacje.enums.ECechaKlienta;
 import eu.programisci.relacje.ob.*;
 import eu.programisci.relacje.repository.*;
@@ -172,5 +174,10 @@ public class RelacjeServiceImpl implements IRelacjeService {
         emailRepository.save(email2);
 
         return klient;
+    }
+
+    @Override
+    public List<ResponseDTO> query(RequestDTO aCrit) {
+        return null;
     }
 }
