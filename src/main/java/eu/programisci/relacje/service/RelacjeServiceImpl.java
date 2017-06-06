@@ -178,6 +178,6 @@ public class RelacjeServiceImpl implements IRelacjeService {
 
     @Override
     public List<ResponseDTO> query(RequestDTO aCrit) {
-        return klientRepository.findKlientAndAdresByAdresContaining("%" + aCrit.getCrit1() + "%");
+        return null;
     }
 }

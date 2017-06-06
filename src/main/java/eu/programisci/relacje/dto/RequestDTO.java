@@ -5,16 +5,34 @@ package eu.programisci.relacje.dto;
  */
 public class RequestDTO {
 
-    String crit1;
+    String adres;
+    String telefon;
+    String email;
 
     public RequestDTO() {
     }
 
-    public String getCrit1() {
-        return crit1;
+    public String getAdres() {
+        return adres;
     }
 
-    public void setCrit1(String crit1) {
-        this.crit1 = crit1;
+    public void setAdres(String adres) {
+        this.adres = adres;
+    }
+
+    public String getTelefon() {
+        return telefon;
+    }
+
+    public void setTelefon(String telefon) {
+        this.telefon = telefon;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

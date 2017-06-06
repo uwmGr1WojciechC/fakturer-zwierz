@@ -8,18 +8,44 @@ public class ResponseDTO {
     Long klientId;
     String klientImie;
     String klientNazwisko;
-    Long adresId;
-    String adresText;
+    Long id1;
+    String val1;
+    Long id2;
+    String val2;
+    Long id3;
+    String val3;
 
     public ResponseDTO() {
     }
 
-    public ResponseDTO(Long klientId, String klientImie, String klientNazwisko, Long adresId, String adresText) {
+    public ResponseDTO(Long klientId, String klientImie, String klientNazwisko, Long id1, String val1) {
         this.klientId = klientId;
         this.klientImie = klientImie;
         this.klientNazwisko = klientNazwisko;
-        this.adresId = adresId;
-        this.adresText = adresText;
+        this.id1 = id1;
+        this.val1 = val1;
+    }
+
+    public ResponseDTO(Long klientId, String klientImie, String klientNazwisko, Long id1, String val1, Long id2, String val2) {
+        this.klientId = klientId;
+        this.klientImie = klientImie;
+        this.klientNazwisko = klientNazwisko;
+        this.id1 = id1;
+        this.val1 = val1;
+        this.id2 = id2;
+        this.val2 = val2;
+    }
+
+    public ResponseDTO(Long klientId, String klientImie, String klientNazwisko, Long id1, String val1, Long id2, String val2, Long id3, String val3) {
+        this.klientId = klientId;
+        this.klientImie = klientImie;
+        this.klientNazwisko = klientNazwisko;
+        this.id1 = id1;
+        this.val1 = val1;
+        this.id2 = id2;
+        this.val2 = val2;
+        this.id3 = id3;
+        this.val3 = val3;
     }
 
     public Long getKlientId() {
@@ -46,19 +72,51 @@ public class ResponseDTO {
         this.klientNazwisko = klientNazwisko;
     }
 
-    public Long getAdresId() {
-        return adresId;
+    public Long getId1() {
+        return id1;
     }
 
-    public void setAdresId(Long adresId) {
-        this.adresId = adresId;
+    public void setId1(Long id1) {
+        this.id1 = id1;
     }
 
-    public String getAdresText() {
-        return adresText;
+    public String getVal1() {
+        return val1;
     }
 
-    public void setAdresText(String adresText) {
-        this.adresText = adresText;
+    public void setVal1(String val1) {
+        this.val1 = val1;
+    }
+
+    public Long getId2() {
+        return id2;
+    }
+
+    public void setId2(Long id2) {
+        this.id2 = id2;
+    }
+
+    public String getVal2() {
+        return val2;
+    }
+
+    public void setVal2(String val2) {
+        this.val2 = val2;
+    }
+
+    public Long getId3() {
+        return id3;
+    }
+
+    public void setId3(Long id3) {
+        this.id3 = id3;
+    }
+
+    public String getVal3() {
+        return val3;
+    }
+
+    public void setVal3(String val3) {
+        this.val3 = val3;
     }
 }
