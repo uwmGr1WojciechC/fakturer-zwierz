@@ -75,7 +75,7 @@
             document.getElementById('response').value = null;
             var url = getHost() + getUrl();
             var response = httpPost(url, getPostBody());
-            if (response = null || response == '') {
+            if (response == null || response == '') {
                 response = '{}';
             }
             document.getElementById('response').value = JSON.stringify(JSON.parse(response), null, 2);
@@ -86,7 +86,7 @@
             document.getElementById('response').value = null;
             var url = getHost() + getUrl();
             var response = httpGet(url);
-            if (response = null || response == '') {
+            if (response == null || response == '') {
                 response = '{}';
             }
             document.getElementById('response').value = JSON.stringify(JSON.parse(response), null, 2);
