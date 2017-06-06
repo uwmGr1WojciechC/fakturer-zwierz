@@ -60,6 +60,15 @@ public class RelacjeServiceImpl implements IRelacjeService {
         AdresOB adres2 = new AdresOB();
         adres2.setPelnyAdres("Olsztyn, Warszawska 1/1");
         adresy.add(adres2);
+        AdresOB adres3 = new AdresOB();
+        adres3.setPelnyAdres("Olsztyn, Dworcowa 1/1");
+        adresy.add(adres3);
+        AdresOB adres4 = new AdresOB();
+        adres4.setPelnyAdres("Warszawa, Olsztyńska 1/1");
+        adresy.add(adres4);
+        AdresOB adres5 = new AdresOB();
+        adres5.setPelnyAdres("Olsztynek, Malinowa 1/1");
+        adresy.add(adres5);
         klient.setAdresy(adresy);
 
         Set<ECechaKlienta> cechy = new HashSet<>();
@@ -85,6 +94,10 @@ public class RelacjeServiceImpl implements IRelacjeService {
         telefon1.setNumer("555555555");
         telefon1 = telefonRepository.save(telefon1);
         telefony.add(telefon1);
+        TelefonOB telefon2 = new TelefonOB();
+        telefon2.setNumer("555333333");
+        telefon2 = telefonRepository.save(telefon2);
+        telefony.add(telefon2);
         klient.setTelefony(telefony);
 
         klient = klientRepository.save(klient);
@@ -119,6 +132,9 @@ public class RelacjeServiceImpl implements IRelacjeService {
         AdresOB adres2 = new AdresOB();
         adres2.setPelnyAdres("Kraków, Plac Ofiar Smogu 5");
         adresy.add(adres2);
+        AdresOB adres3 = new AdresOB();
+        adres3.setPelnyAdres("Olsztynek, Akacjowa 7");
+        adresy.add(adres3);
         klient.setAdresy(adresy);
 
         Set<ECechaKlienta> cechy = new HashSet<>();
@@ -150,6 +166,10 @@ public class RelacjeServiceImpl implements IRelacjeService {
         email1.setAdres("anka666@dobramama.pl");
         email1.setKlient(klient);
         emailRepository.save(email1);
+        EmailOB email2 = new EmailOB();
+        email2.setAdres("ania352341@gmail.com");
+        email2.setKlient(klient);
+        emailRepository.save(email2);
 
         return klient;
     }
