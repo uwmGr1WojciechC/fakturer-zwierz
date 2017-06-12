@@ -1,7 +1,9 @@
 package eu.programisci.relacje.service;
 
-import eu.programisci.relacje.dto.RequestDTO;
-import eu.programisci.relacje.dto.ResponseDTO;
+import eu.programisci.relacje.dto.KlientDTO;
+import eu.programisci.relacje.dto.KlientIAdresDTO;
+import eu.programisci.relacje.dto.KlientIKontoDTO;
+import eu.programisci.relacje.dto.KlientZAdresamiDTO;
 import eu.programisci.relacje.enums.ECechaKlienta;
 import eu.programisci.relacje.ob.*;
 import eu.programisci.relacje.repository.*;
@@ -77,9 +79,10 @@ public class RelacjeServiceImpl implements IRelacjeService {
         cechy.add(ECechaKlienta.BLONDYN);
         cechy.add(ECechaKlienta.CHUDY);
         cechy.add(ECechaKlienta.WYSOKI);
+        cechy.add(ECechaKlienta.WESOLY);
         klient.setCechyKlienta(cechy);
 
-        List<SubskrypcjaOB> subskrypcje = new ArrayList<>();
+        Set<SubskrypcjaOB> subskrypcje = new HashSet<>();
         SubskrypcjaOB subskrypcja1 = new SubskrypcjaOB();
         subskrypcja1.setNazwa("Pakiet Plus");
         subskrypcje.add(subskrypcja1);
@@ -143,9 +146,10 @@ public class RelacjeServiceImpl implements IRelacjeService {
         cechy.add(ECechaKlienta.RUDY);
         cechy.add(ECechaKlienta.GRUBY);
         cechy.add(ECechaKlienta.NISKI);
+        cechy.add(ECechaKlienta.WESOLY);
         klient.setCechyKlienta(cechy);
 
-        List<SubskrypcjaOB> subskrypcje = new ArrayList<>();
+        Set<SubskrypcjaOB> subskrypcje = new HashSet<>();
         SubskrypcjaOB subskrypcja1 = new SubskrypcjaOB();
         subskrypcja1.setNazwa("Pakiet Cebulowy");
         subskrypcje.add(subskrypcja1);
@@ -177,7 +181,74 @@ public class RelacjeServiceImpl implements IRelacjeService {
     }
 
     @Override
-    public List<ResponseDTO> query(RequestDTO aCrit) {
-        return null;
+    public List<KlientDTO> znajdzKlietowPoLoginie(String aLogin) {
+        return klientRepository.znajdzKlietowPoLoginie(aLogin);
+    }
+
+    @Override
+    public List<KlientIKontoDTO> znajdzKlietowIKontaPoLoginie(String aLogin) {
+        return klientRepository.znajdzKlietowIKontaPoLoginie(aLogin);
+    }
+
+    @Override
+    public List<KlientDTO> znajdzKlientowPoCzesciowymAdresie(String aAdres) {
+        return klientRepository.znajdzKlientowPoCzesciowymAdresie(aAdres);
+    }
+
+    // UWAGA: Ponizsza metoda nie jest napisana ani w elegancki, ani w wydajny sposob!
+    // Ponizszy sposob ma jak najjasniej i najprosciej obrazowac wymagany proces.
+    @Override
+    public List<KlientZAdresamiDTO> znajdzKlientowIAdresyPoCzesciowymAdresieNoDuplicates(String aAdres) {
+        List<KlientIAdresDTO> pFoundDTOList = klientRepository.znajdzKlientowIAdresyPoCzesciowymAdresie(aAdres);
+        List<KlientZAdresamiDTO> pResultList = new ArrayList<>();
+        for (KlientIAdresDTO foundDTO : pFoundDTOList) {
+            boolean pAlreadyExistsInResults = false;
+            for (KlientZAdresamiDTO existingResultDTO : pResultList) {
+                if (existingResultDTO.getId().equals(foundDTO.getId())) {
+                    existingResultDTO.getAdresy().add(foundDTO.getAdres());
+                    pAlreadyExistsInResults = true;
+                    break;
+                }
+            }
+            if (!pAlreadyExistsInResults) {
+                KlientZAdresamiDTO pResultRecord = new KlientZAdresamiDTO();
+                pResultRecord.setId(foundDTO.getId());
+                pResultRecord.setImie(foundDTO.getImie());
+                pResultRecord.setNazwisko(foundDTO.getNazwisko());
+                pResultRecord.setAdresy(new ArrayList<>());
+                pResultRecord.getAdresy().add(foundDTO.getAdres());
+                pResultList.add(pResultRecord);
+            }
+        }
+        return pResultList;
+    }
+    @Override
+    public List<KlientIAdresDTO> znajdzKlientowIAdresyPoCzesciowymAdresieWithDuplicates(String aAdres) {
+        return klientRepository.znajdzKlientowIAdresyPoCzesciowymAdresie(aAdres);
+    }
+
+    @Override
+    public List<KlientDTO> znajdzKlientowZCecha(ECechaKlienta aCecha) {
+        return klientRepository.znajdzKlientowZCecha(aCecha);
+    }
+
+    @Override
+    public List<KlientOB> znajdzPelnychKlientowZCecha(ECechaKlienta aCecha) {
+        return klientRepository.znajdzPelnychKlientowZCecha(aCecha);
+    }
+
+    @Override
+    public List<KlientOB> znajdzPelnychKlientowZCechaFetch(ECechaKlienta aCecha) {
+        return klientRepository.znajdzPelnychKlientowZCechaFetch(aCecha);
+    }
+
+    @Override
+    public List<String> znajdzTelefonyPoIdKlienta(Long aKlientId) {
+        return klientRepository.znajdzTelefonyPoIdKlienta(aKlientId);
+    }
+
+    @Override
+    public List<String> znajdzEmailePoIdKlienta(Long aKlientId) {
+        return emailRepository.znajdzEmailePoIdKlienta(aKlientId);
     }
 }

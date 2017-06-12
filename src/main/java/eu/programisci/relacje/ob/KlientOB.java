@@ -4,7 +4,6 @@ import eu.programisci.relacje.enums.ECechaKlienta;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -32,7 +31,7 @@ public class KlientOB {
     // jest to przyklad prawdziwej relacji @OneToMany, dla ktorej powstaje tabela relacyjna
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "klienci_subskrypcje")
-    private List<SubskrypcjaOB> subskrypcje;
+    private Set<SubskrypcjaOB> subskrypcje;
 
     // jeden uzytkownik moze miec wiele telefonow, ale kazdy telefon nalezy do jednego uzytkownika
     // jest to przyklad relacji, ktora jest typu @OneToMany tylko z punktu widzenia uzytkownika JPA
@@ -91,11 +90,11 @@ public class KlientOB {
         konto = aKonto;
     }
 
-    public List<SubskrypcjaOB> getSubskrypcje() {
+    public Set<SubskrypcjaOB> getSubskrypcje() {
         return subskrypcje;
     }
 
-    public void setSubskrypcje(List<SubskrypcjaOB> aSubskrypcje) {
+    public void setSubskrypcje(Set<SubskrypcjaOB> aSubskrypcje) {
         subskrypcje = aSubskrypcje;
     }
 
