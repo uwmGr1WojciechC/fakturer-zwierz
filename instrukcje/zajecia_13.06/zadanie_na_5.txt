@@ -1,29 +1,29 @@
-1. Zrobiæ zadanie na 4.
+1. Zrobic zadanie na 4.
 
 
-2. Utworzyæ encjê (z ewentualnymi polami relacyjnymi):
+2. Utworzyc encje (z ewentualnymi polami relacyjnymi):
 OczyOB
     Long id;
     String kolorLewegoOka;
     String kolorPrawegoOka;
 
 
-3. Utworzyæ relacjê
-@OneToOne po stronie ZwierzeOB, wi¹¿¹c¹ OczyOB ze ZwierzeOB
+3. Utworzyc relacje
+@OneToOne po stronie ZwierzeOB, wiazaca OczyOB ze ZwierzeOB
 
 
-4. Utworzyæ:
-a) NoweZwierzeDTO, zgodne z modelem w punkcie 7.
-b) Dostosowaæ /api/zwierzeta/save do przyjêcia NoweZwierzeDTO.
-c) Dostosowaæ serwis do zapisu, tak, aby utrwala³ nowe dane w bazie.
+4. Utworzyc:
+a) NoweZwierzeDTO (struktura w punkcie 6).
+b) Dostosowac /api/zwierzeta/save do przyjecia NoweZwierzeDTO.
+c) Dostosowac serwis do zapisu, tak, aby utrwalal nowe dane w bazie.
 
 
-5. Utworzyæ nastêpuj¹ce resty:
-GET /api/zwierzeta/znajdzZCoNajmniejJednymOkiemWKolorze
+5. Utworzyc nastepujace resty:
+GET /api/zwierzeta/znajdzZCoNajmniejJednymOkiemWKolorze - zwraca liste zwierzat, dla ktorych kolor lewego lub prawego oka jest rowny parametrowi wejsciowemu
 in: String kolor
 out: List<ZwierzeZOczamiDTO>
 
-POST /api/zwierzeta/znajdzSamcowWKolorzeStarszychNiz
+POST /api/zwierzeta/znajdzSamcowGatunkuStarszychNiz - zwraca liste zwierzat, ktorych plec jest rowna "SAMIEC", gatunek jest rowny parametrowi wejsciowemu, a wiek jest wiekszy niz parametr wejsciowy
 in: ZwierzeCritDTO
 out: List<ZwierzeOB>
 
@@ -36,11 +36,19 @@ ZwierzeZOczamiDTO
     String kolorPrawegoOka;
 
 ZwierzeCritDTO
-    String kolor;
+    EGatunek gatunek;
     Integer wiek;
 
+NoweZwierzeDTO
+    String nazwa;
+    EGatunek gatunek;
+    EPlec plec;
+    Integer wiek;
+    String kolorLewegoOka;
+    String kolorPrawegoOka;
 
-7. Dane do zape³nienia bazy (inne ni¿ w zadaniu na 3):
+
+7. Dane do zapelnienia bazy (inne niz w zadaniu na 3):
 {
 "nazwa":"Azor",
 "gatunek":"PIES",
@@ -51,7 +59,7 @@ ZwierzeCritDTO
 }
 
 {
-"nazwa":"Hañba",
+"nazwa":"Hanba",
 "gatunek":"PIES",
 "plec":"SAMICA",
 "wiek":3,
@@ -64,17 +72,17 @@ ZwierzeCritDTO
 "gatunek":"KOT",
 "plec":"SAMIEC",
 "wiek":4,
-"kolorLewegoOka":"zó³te",
+"kolorLewegoOka":"zolte",
 "kolorPrawegoOka":"niebieskie"
 }
 
 {
-"nazwa":"Diabu³",
+"nazwa":"Diabul",
 "gatunek":"KOT",
 "plec":"SAMIEC",
 "wiek":3,
 "kolorLewegoOka":"niebieskie",
-"kolorPrawegoOka":"¿ó³te"
+"kolorPrawegoOka":"zolte"
 }
 
 {

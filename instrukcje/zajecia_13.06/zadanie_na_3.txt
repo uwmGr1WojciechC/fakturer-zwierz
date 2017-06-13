@@ -1,4 +1,4 @@
-1. Utworzyæ encjê:
+1. Utworzyc encje:
 ZwierzeOB
     Long id;
     Date dataUtworzenia; // (wypelniane new Date() przy tworzeniu nowego rekordu)
@@ -8,15 +8,30 @@ ZwierzeOB
     Integer wiek;
 
 
-2. Utworzyæ enumy:
+2. Utworzyc enumy:
 EGatunek: PIES, KOT, JASZCZURKA
 EPlec: SAMIEC, SAMICA
 
 
-3. Utworzyæ pe³ny CRUD pod œcie¿k¹: /api/zwierzeta
+3. Utworzyc pelny CRUD:
+GET /api/zwierzeta/findOne - zwraca 1 rekord po jego id
+in: Long "id"
+out: ZwierzeDTO
+
+GET /api/zwierzeta/findAll - zwraca wszystkie rekordy
+in: void
+out: List<ZwierzeDTO>
+
+GET /api/zwierzeta/deleteOne - usuwa 1 rekord po jego id
+in: Long "id"
+out: void
+
+POST /api/zwierzeta/save - zapisuje rekord do bazy i zwraca zapisany rekord
+in: ZwierzeDTO
+out: ZwierzeDTO
 
 
-4. Zwracana bêdzie klasa:
+4. Struktura DTO:
 ZwierzeDTO
     String nazwa;
     EGatunek gatunek;
@@ -24,7 +39,7 @@ ZwierzeDTO
     Integer wiek;
 
 
-5. Dane do zape³nienia bazy (w zadaniu na 5 dane s¹ inne):
+5. Dane do zapelnienia bazy (w zadaniu na 5 dane sa inne):
 {
 "nazwa":"Azor",
 "gatunek":"PIES",
@@ -33,7 +48,7 @@ ZwierzeDTO
 }
 
 {
-"nazwa":"Hañba",
+"nazwa":"Hanba",
 "gatunek":"PIES",
 "plec":"SAMICA",
 "wiek":3
@@ -47,7 +62,7 @@ ZwierzeDTO
 }
 
 {
-"nazwa":"Diabu³",
+"nazwa":"Diabul",
 "gatunek":"KOT",
 "plec":"SAMIEC",
 "wiek":3
